@@ -4,8 +4,6 @@ import os
 import pandas as pd
 import requests
 import streamlit as st
-from azure.ai.ml import MLClient
-from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
 # from encoding_new_inputs import extract_features
