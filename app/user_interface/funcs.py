@@ -16,29 +16,11 @@ from src.model_pred_orders import predict_orders as po
 def bind_socket():
     # Load configuration from environment variables
     load_dotenv()
-    subscription_id = os.environ["SUBSCRIPTION_ID"]
-    resource_group = os.environ["RESOURCE_GROUP"]
-    workspace_name = os.environ["WORKSPACE_NAME"]
-
-    # Create Azure ML client
-    ml_client = MLClient(
-        credential=DefaultAzureCredential(),
-        subscription_id=subscription_id,
-        resource_group_name=resource_group,
-        workspace_name=workspace_name,
-    )
-
+    
     df_feature_table = pd.read_csv("data/feature_table.csv")
     prediction_table = po.make_prediction_table([["2024-12-31", None]], df_feature_table)
-
-    # Set endpoint name
-    endpoint_name = "endpoint-xgb-model"
-
-    # Get the endpoint credentials
-    endpoint = ml_client.online_endpoints.get(endpoint_name)
-    scoring_uri = endpoint.scoring_uri
-    keys = ml_client.online_endpoints.get_keys(name=endpoint_name)
-    key = keys.primary_key
+    scoring_uri = os.environ["score"]
+    key = os.environ["key"]
     headers = {"Authorization": ("Bearer " + key)}
 
     return scoring_uri, headers, prediction_table
