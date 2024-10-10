@@ -8,7 +8,7 @@ from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
-# from src.feature_engineering.encoding_new_inputs import extract_features
+# from encoding_new_inputs import extract_features
 import predict_orders as po
 
 
