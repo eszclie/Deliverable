@@ -9,7 +9,7 @@ from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
 # from src.feature_engineering.encoding_new_inputs import extract_features
-from src.model_pred_orders import predict_orders as po
+import predict_orders as po
 
 
 @st.cache_resource
