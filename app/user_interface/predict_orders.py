@@ -6,8 +6,8 @@ import pandas as pd
 
 sys.path.append(os.path.join(os.getcwd(), "src"))
 
-import etl_neerslag.functions.get_average as rainfall_funcs
-import feature_engineering.encoding_new_inputs as enc
+import get_average as rainfall_funcs
+import encoding_new_inputs as enc
 
 # Fixed paths
 X_PATH = "data/data_ready/x_features.csv"
