@@ -15,28 +15,13 @@ def bind_socket():
     # Load configuration from environment variables
     load_dotenv()
     
-    df_feature_table = pd.read_csv("data/feature_table.csv")
+    df_feature_table = pd.read_csv("app/user_interface/feature_table.csv")
     prediction_table = po.make_prediction_table([["2024-12-31", None]], df_feature_table)
     scoring_uri = os.environ["score"]
     key = os.environ["key"]
     headers = {"Authorization": ("Bearer " + key)}
 
     return scoring_uri, headers, prediction_table
-
-
-# def get_response(in_data, h, score):
-#     # Display the selected dates and predicted rainfall
-#     print("Input: ", in_data)
-#     input_encoded = extract_features(in_data)
-#     print("Encoded: ", input_encoded)
-#     input_dict = {"input_data": input_encoded.tolist()}
-#     print("Input_dict: ", input_dict)
-
-#     # Send the POST request
-#     response = requests.post(score, json=input_dict, headers=h).text
-#     out = json.loads(response)
-#     return out
-
 
 def set_page_confic():
     st.set_page_config(
